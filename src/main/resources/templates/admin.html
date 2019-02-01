@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>HelloWorld Admin page</title>
+</head>
+<body>
+<p th:text="'Dear ' + ${user} + '. Welcome to Admin Page.'" /><br>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
