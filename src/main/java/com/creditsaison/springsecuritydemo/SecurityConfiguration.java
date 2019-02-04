@@ -17,7 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-        auth.inMemoryAuthentication().withUser("bill").password(encoder.encode("abc123")).roles("USER");
+        auth.inMemoryAuthentication().withUser("gourav").password(encoder.encode("abc123")).roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password(encoder.encode("root123")).roles("ADMIN");
         auth.inMemoryAuthentication().withUser("dba").password(encoder.encode("root123")).roles("ADMIN","DBA");//dba have two roles.
     }
@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                .antMatchers("/db/*").access("hasRole('ADMIN') and hasRole('DBA')")
                 .and().formLogin()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
 
